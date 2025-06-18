@@ -42,6 +42,7 @@ jobs:
           app_location: "/" # optional if using root
           output_location: "build/client" # or whatever `pnpm run build` outputs
           api_location: "build/server"            # Where SSR function is
+          CUSTOM_BUILD_COMMAND: pnpm install && pnpm run build
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
