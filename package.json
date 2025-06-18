@@ -12,9 +12,8 @@
   },
   "scripts": {
     "deploy": "npm run build && wrangler pages deploy",
-    "build": "set NODE_OPTIONS=--max-old-space-size=4096 && remix vite:build",
+    "build": "remix vite:build",
     "dev": "node pre-start.cjs  && remix vite:dev",
-    "export": "remix export",
     "test": "vitest --run",
     "test:watch": "vitest",
     "lint": "eslint --cache --cache-location ./node_modules/.cache/eslint app",
