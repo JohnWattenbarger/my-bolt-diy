@@ -41,7 +41,6 @@ jobs:
           action: "upload"
           app_location: "/" # optional if using root
           output_location: "build/client" # or whatever `pnpm run build` outputs
-          skip_app_build: true
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
