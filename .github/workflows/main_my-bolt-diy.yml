@@ -31,8 +31,12 @@ jobs:
           pnpm install --frozen-lockfile
           pnpm run build
 
-      - name: Zip artifact for deployment
-        run: zip release.zip ./* -r
+      - name: Copy deploy files
+        run: |
+          mkdir deploy
+          cp -r build/ public/ package.json pnpm-lock.yaml node_modules/ deploy/
+          cd deploy
+          zip -r ../release.zip .
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
