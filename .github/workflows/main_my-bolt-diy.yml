@@ -47,7 +47,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     needs: build
-    
+
     permissions:
       id-token: write #This is required for requesting the JWT
       contents: read #This is required for actions/checkout
@@ -57,10 +57,13 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: node-app
+          path: ./deploy-artifact
 
-      - name: Unzip artifact for deployment
-        run: unzip release.zip
-      
+      - name: Unzip artifact into deployment folder
+        run: |
+          mkdir deploy
+          unzip ./deploy-artifact/release.zip -d ./deploy
+
       - name: Login to Azure
         uses: azure/login@v2
         with:
@@ -68,11 +71,12 @@ jobs:
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_AE34D0FA878F46B2A8B2EBA26DA2F1D0 }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_5E65E7B86F5F442CB65E92BD8736561E }}
 
-      - name: 'Deploy to Azure Web App'
+      - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
         with:
           app-name: 'my-bolt-diy'
           slot-name: 'Production'
-          package: .
+          package: ./deploy
+
           
