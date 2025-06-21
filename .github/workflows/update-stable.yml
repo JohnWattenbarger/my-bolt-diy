@@ -1,9 +1,10 @@
 name: Update Stable Branch
 
 on:
-  push:
-    branches:
-      - main
+  # push:
+  #   branches:
+  #     - main
+  workflow_dispatch: # only run manually
 
 permissions:
   contents: write

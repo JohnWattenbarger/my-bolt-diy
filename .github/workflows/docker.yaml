@@ -1,10 +1,10 @@
 name: Docker Publish
 
 on:
-  push:
-    branches: [main, stable]
-    tags: ['v*', '*.*.*']
-  workflow_dispatch:
+  # push:
+  #   branches: [main, stable]
+  #   tags: ['v*', '*.*.*']
+  workflow_dispatch: # only run manually
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
