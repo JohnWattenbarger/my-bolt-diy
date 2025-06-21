@@ -34,7 +34,7 @@ jobs:
       - name: Copy deploy files
         run: |
           mkdir deploy
-          cp -r build/ public/ package.json pnpm-lock.yaml
+          cp -r build/ public/ package.json pnpm-lock.yaml deploy/
           cd deploy
           zip -r ../release.zip .
 
